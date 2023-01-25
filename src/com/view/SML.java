@@ -26,10 +26,10 @@ public class SML {
 		// TODO Auto-generated method stub
 
 		//Data_processing.replace_Dollar(".\\Data\\student-data.txt");
-		//Data_processing.replace_Hash_Add_Id(".\\Data\\Students_Data.txt");
+		//Data_processing.replace_Hash_Add_Id(".\\Data\\Students_Data.csv");
 		//Data_processing.convert_Xml_To_Csv(".\\Data\\coursedata.xml");
 		
-		//SMLController.print_AllStudentData(".\\Data\\Students_Data.txt");
+		SMLController.print_AllStudentData(".\\Data\\Students_Data.csv");
 		//System.out.println(SMLController.search(".\\Data\\string-to-json-online.json", "1"));
 		
 		/*

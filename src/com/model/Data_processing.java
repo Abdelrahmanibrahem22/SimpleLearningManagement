@@ -75,11 +75,19 @@ public class Data_processing {
 	        try {
 	             reader = new BufferedReader(new FileReader(inFile));
 	            String line;
-
+                int id=0;
 	            while((line = reader.readLine()) != null){
-	              
+	            	if (id==0) {
+	            		id++;
+	            		line=line.replaceAll("# ", " ");
+	  	                line =line.replaceAll("#", ",");
+	  	                output.add("id,"+line);
+	  	                continue;
+					}
+	            	
+	                line=line.replaceAll("# ", " ");
 	                line =line.replaceAll("#", ",");
-	                output.add(line);
+	                output.add(id++ +","+line);
 	         
 	            }
 
