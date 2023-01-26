@@ -14,7 +14,7 @@ public class HomePage {
 		
 System.out.println("Welcome to LMS"+"\n"+
 "created by {Abdelrahman Ibrahem _ 22/1/2023}"+"\n"+"=============================================================================================================================================="+"\n"+"Home page"+"\n"+"==============================================================================================================================================");
-SMLController.print_AllStudentData(".\\Data\\Students_Data.csv");
+SMLController.print_All_Student_Data();
 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 Scanner in=new Scanner(System.in);
 System.out.print("please select the required student:");
@@ -33,7 +33,7 @@ System.out.print("--------------------------------------------------------------
 String action=in.next();
 switch (action) {
 case "a": {
-	
+	EnrollmentPage.main(args);
 	break;	
 }case "d":{
 	

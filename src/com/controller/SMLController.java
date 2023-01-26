@@ -19,16 +19,15 @@ import org.json.simple.parser.ParseException;
 public class SMLController {
 
 	//Function to print all student data
-	public static void print_AllStudentData(String filepath) {
+	public static void print_All_Student_Data() {
 		System.out.println("-------------------------------\r\n"+ "Student List:\r\n"+ "-------------------------------");
-		File f=new File(filepath);
+		File f=new File(".\\Data\\Students_Data.csv");
 	        BufferedReader reader = null;
 	        try {
 	             reader = new BufferedReader(new FileReader(f));
 	            String line;
 	          
-                for (int i = 0; i < 5; i++) { 
-                	
+                for (int i = 0; i < 5; i++) { 	
 	            line = reader.readLine();
 	            	String[] part=line.split(",");
 	            	if (i==0) {
@@ -135,7 +134,7 @@ try {
 		
 	
 	//search in json file 
-	public static boolean search(String pathFile ,String id) throws IOException, ParseException {
+	/*public static boolean search(String pathFile ,String id) throws IOException, ParseException {
 		JSONParser p=new JSONParser();
 		FileReader reader = new FileReader(pathFile);
 		JSONArray courses=(JSONArray) p.parse(reader);
@@ -167,4 +166,46 @@ try {
 		
 	}
 	*/
+	//Function to print list of courses
+		public static void print_All_Courses() {
+			System.out.println("Enrollment page\r\n"
+					+ "=====================================================================================================================================================================================");
+			File f=new File(".\\Data\\Courses_Data.csv");
+		        BufferedReader reader = null;
+		        try {
+		             reader = new BufferedReader(new FileReader(f));
+		            String line;
+		          int i=0;
+	                while((line = reader.readLine())!= null) { 	
+		            
+		            	String[] part=line.split(",");
+		            	if (i==0) {
+		            		i++;
+		            		 System.out.format("%1s %1s %15s %25s %20s %10s\n", "id,","Course Name,","Instructor,","Course duration,","Course time,","Location");
+		            		 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		            		 System.out.format("%1s %13s %22s %15s %20s %10s\n", part[0],part[1]+",",part[2]+part[3]+",",part[4]+",",part[5]+",",part[6]);
+		            		 continue;
+						}
+		               // students.add(new Student(part[0],part[1],part[2], part[3],part[4],part[5], part[6],null));
+		               // System.out.println(part[0]+"  "+part[1]+",     "+part[2]+",    "+part[3]+",    "+part[4]+",    "+part[5]+",    "+part[6]+",");
+		            	System.out.format("%1s %13s %20s %15s %20s %10s\n", part[0],part[1]+",",part[2]+part[3]+",",part[4]+",",part[5]+",",part[6]);
+	                }
+		            reader.close();
+		        
+		         } catch (Exception e) {
+		            e.printStackTrace();
+		         } finally {
+		            try {
+		                reader.close();
+		               
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
+			
+		
+		
+		
+		}
+		
 }
