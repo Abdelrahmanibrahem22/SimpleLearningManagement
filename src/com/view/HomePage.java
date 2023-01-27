@@ -8,17 +8,19 @@ import java.util.Scanner;
 import com.controller.SMLController;
 
 public class HomePage {
-
+ 
+	public static String id;
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		
+	
 System.out.println("Welcome to LMS"+"\n"+
 "created by {Abdelrahman Ibrahem _ 22/1/2023}"+"\n"+"=============================================================================================================================================="+"\n"+"Home page"+"\n"+"==============================================================================================================================================");
 SMLController.print_All_Student_Data();
 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 Scanner in=new Scanner(System.in);
 System.out.print("please select the required student:");
-String id =in.next();
+ id =in.next();
 System.out.println("=============================================================================================================================================="+"\n"+"Student Details page\n"+"=============================================================================================================================================="+"\n");
 System.out.println(SMLController.print_Required_Student(id));
 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n"
@@ -36,7 +38,7 @@ case "a": {
 	EnrollmentPage.main(args);
 	break;	
 }case "d":{
-	
+	SMLController.unEnroll_course(id);
 	break;
 }case "r": {
 	

@@ -14,14 +14,17 @@ public class SML {
 	public static void main(String[] args) throws FileNotFoundException, IOException, TransformerConfigurationException, ParserConfigurationException, SAXException, TransformerException, ParseException {
 		// TODO Auto-generated method stub
 
-		Data_processing.replace_Dollar(".\\Data\\student-data.txt");
-		Data_processing.replace_Hash_Add_Id(".\\Data\\Students_Data.csv");
-		Data_processing.convert_Xml_To_Csv(".\\Data\\coursedata.xml");
+		//Data_processing.replace_Dollar(".\\Data\\student-data.txt");
+		//Data_processing.replace_Hash_Add_Id(".\\Data\\Students_Data.csv");
+		//Data_processing.convert_Xml_To_Csv(".\\Data\\coursedata.xml");
 		
 		//SMLController.print_All_Student_Data();
 		//SMLController.print_All_Courses();
 		//System.out.println(SMLController.search(".\\Data\\string-to-json-online.json", "1"));
 		
+		//SMLController.student_course("1");
+	    //SMLController.enroll_course("1", 5);
+	    // SMLController.unEnroll_course("2"); 
 		
 	}
 

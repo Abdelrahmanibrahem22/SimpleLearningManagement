@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class SMLController {
 	             reader = new BufferedReader(new FileReader(f));
 	            String line;
 	          
-                for (int i = 0; i < 5; i++) { 	
+                for (int i = 0; i <= 100; i++) { 	
 	            line = reader.readLine();
 	            	String[] part=line.split(",");
 	            	if (i==0) {
@@ -80,7 +81,7 @@ public class SMLController {
                 e.printStackTrace();
             }
         }
-        return"please enter vaild id of student";
+        return"The input you have provided is invalid, please enter a valid input";
 	}
 	//Function to print student course
 	public static void student_course(String id) throws FileNotFoundException, IOException {
@@ -89,9 +90,8 @@ public class SMLController {
 
 		    JSONTokener jsonTokener = new JSONTokener(inputStream);
 		    JSONObject jsonObject = new JSONObject(jsonTokener);
-try {
+try {       
 		    org.json.JSONArray jsonArray = jsonObject.getJSONArray(id);
-
 		    List course = new ArrayList<>();
 		    for (int i = 0; i < jsonArray.length(); i++) {
 		     
@@ -125,13 +125,113 @@ try {
 	        }
 	        catch (Exception e) {
 	       
-            	System.out.println("This student hasn't enrolled in any courses");
+            	System.out.println("Student has not enrolled in any course yet.");
 			
 	         } finally {
 	        }	
 		
 	}
+	//Function to Enroll ccourse
+	public static void enroll_course(String student_Id,int course_Id) throws FileNotFoundException {
+		String resourceName = ".\\Data\\Student course details.json";
+	    InputStream inputStream = new FileInputStream(resourceName);
+
+	    JSONTokener jsonTokener = new JSONTokener(inputStream);
+	    JSONObject jsonObject = new JSONObject(jsonTokener);
+try {
+	    org.json.JSONArray jsonArray = jsonObject.getJSONArray(student_Id);
+	    if (course_Id >17) {
+			System.out.println("The input you have provided is invalid, please enter a valid input");
+		}else {
+	    if (jsonArray.length()<6) {
+	    	 jsonArray.put(jsonArray.length(), course_Id);
+	         System.out.println("The student is Enrolled Successfully in the Algorithms course");
+		}else {
+			System.out.println("Students can’t enroll in more than 6 programs at the same time.");
+		}
+		}
+	    List course = new ArrayList<>();
+	    for (int i = 0; i < jsonArray.length(); i++) {
+	     
+	    	course.add(jsonArray.getInt(i));
+	        
+	       
+	    }		
+	    FileWriter writer = new FileWriter(".\\Data\\Student course details.json", false); //overwrites the content of file
+		writer.write(jsonObject.toString());
+		writer.close();
+	   //System.out.println(course.get(2)); check point
+		/*File f=new File(".\\Data\\Courses_Data.csv");
+	    BufferedReader reader = null;
+      
+             reader = new BufferedReader(new FileReader(f));
+            String line;
+          
+            while ((line=reader.readLine()) !=null) { 
+           
+            String[] part=line.split(",");
+            String x=part[0];
+            for (int i = 0; i < course.size(); i++) {
+	   		     
+            	if (part[0].equalsIgnoreCase(course.get(i).toString())) {
+            		
+            		System.out.println(i+1+"-  "+part[0]+",     "+part[1]+",     "+part[2]+","+part[3]+",    "+part[4]+",    "+part[5]+",    "+part[6]+",");
+            		
+				}
+                
+            }
+            }
+            reader.close();
+          */  
+        }
+        catch (Exception e) {
+       
+        	System.out.println(e);
 		
+         } finally {
+        }	
+		
+		
+		
+	}
+	
+	//Function to Unenroll from an existing course
+	public static void unEnroll_course(String student_Id) throws FileNotFoundException {
+		String resourceName = ".\\Data\\Student course details.json";
+	    InputStream inputStream = new FileInputStream(resourceName);
+
+	    JSONTokener jsonTokener = new JSONTokener(inputStream);
+	    JSONObject jsonObject = new JSONObject(jsonTokener);
+try {
+	    org.json.JSONArray jsonArray = jsonObject.getJSONArray(student_Id);
+	    if (jsonArray.length() >1) {
+	    	
+	    	jsonArray.remove(jsonArray.length()-1);
+	    	System.out.println("unenrolled successfully");
+            //System.out.println("000000000"); check point
+
+		}else {
+			System.out.println("Can not unenroll course because Students should at least have 1 course");
+		}
+	    List course = new ArrayList<>();
+	    for (int i = 0; i < jsonArray.length(); i++) {
+	     
+	    	course.add(jsonArray.getInt(i));
+	        
+	       
+	    }		
+	    FileWriter writer = new FileWriter(".\\Data\\Student course details.json", false); //overwrites the content of file
+		writer.write(jsonObject.toString());
+		writer.close();
+}
+		catch (Exception e) {
+		       
+        	System.out.println(e);
+		
+         } finally {
+        }	
+			
+	}
 	
 	//search in json file 
 	/*public static boolean search(String pathFile ,String id) throws IOException, ParseException {

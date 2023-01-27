@@ -18,8 +18,9 @@ public static void main(String[] args) throws IOException {
 	String action=in.next();
 	if (action.equalsIgnoreCase("b")) {
 		HomePage.main(args);
-	}else if (Integer.parseInt(action) <=100  ) {
-		System.out.println("The student is Enrolled Successfully in the Algorithms course");
+	}else {
+		SMLController.enroll_course(HomePage.id, Integer.parseInt(action));
+	
 	}
 	
 }
