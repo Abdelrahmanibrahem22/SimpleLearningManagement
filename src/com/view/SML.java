@@ -25,7 +25,8 @@ public class SML {
 		//SMLController.student_course("1");
 	    //SMLController.enroll_course("1", 5);
 	    // SMLController.unEnroll_course("2"); 
-		
+		//SMLController.get_course_By_Id("1");
+		//SMLController.replace("3", "2", "1");
 	}
 
 }

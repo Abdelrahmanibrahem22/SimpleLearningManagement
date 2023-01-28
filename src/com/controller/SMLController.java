@@ -126,6 +126,20 @@ try {
 	        catch (Exception e) {
 	       
             	System.out.println("Student has not enrolled in any course yet.");
+            	System.out.println("------------------------------------------------------------------------------------\r\n"
+            			+ "Please choose from the following:\r\n"
+            			+ "a - Enroll in a course\r\n"
+            			+ "d - Unenrollfrom an existing course\r\n"
+            			+ "r - Replacing an existing course\r\n"
+            			+ "b - Back to the main page\r\n"
+            			+ "Please select the required action: r\r\n"
+            			+ "Faild to replace as the student hasn't enrolled in any course yet\r\n"
+            			+ "Please choose from the following:\r\n"
+            			+ "a - Enroll in a course\r\n"
+            			+ "d - Unenrollfrom an existing course\r\n"
+            			+ "r - Replacing an existing course\r\n"
+            			+ "b - Back to the main page\r\n"
+            			+ "Please select the required action:");
 			
 	         } finally {
 	        }	
@@ -160,29 +174,7 @@ try {
 	    FileWriter writer = new FileWriter(".\\Data\\Student course details.json", false); //overwrites the content of file
 		writer.write(jsonObject.toString());
 		writer.close();
-	   //System.out.println(course.get(2)); check point
-		/*File f=new File(".\\Data\\Courses_Data.csv");
-	    BufferedReader reader = null;
-      
-             reader = new BufferedReader(new FileReader(f));
-            String line;
-          
-            while ((line=reader.readLine()) !=null) { 
-           
-            String[] part=line.split(",");
-            String x=part[0];
-            for (int i = 0; i < course.size(); i++) {
-	   		     
-            	if (part[0].equalsIgnoreCase(course.get(i).toString())) {
-            		
-            		System.out.println(i+1+"-  "+part[0]+",     "+part[1]+",     "+part[2]+","+part[3]+",    "+part[4]+",    "+part[5]+",    "+part[6]+",");
-            		
-				}
-                
-            }
-            }
-            reader.close();
-          */  
+	  
         }
         catch (Exception e) {
        
@@ -302,10 +294,87 @@ try {
 		                e.printStackTrace();
 		            }
 		        }
-			
-		
-		
-		
+	
 		}
+        public static void get_course_By_Id(String id) {
+		
+        	File f=new File(".\\Data\\Courses_Data.csv");
+	        BufferedReader reader = null;
+	        try {
+	             reader = new BufferedReader(new FileReader(f));
+	            String line;
+                while((line = reader.readLine())!= null) { 	
+	            
+	            	String[] part=line.split(",");
+	            	if (part[0].equalsIgnoreCase(id)) {
+	            		System.out.println("Available courses\r\n"
+	            				+ "===================================================================================================");
+	            		 System.out.format("%1s %1s %15s %25s %20s %10s\n", "id,","Course Name,","Instructor,","Course duration,","Course time,","Location");
+	            		 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+	            		 System.out.format("%1s %13s %22s %15s %20s %10s\n", part[0],part[1]+",",part[2]+part[3]+",",part[4]+",",part[5]+",",part[6]);
+	            		 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+	            		 //continue;
+					}
+	               // students.add(new Student(part[0],part[1],part[2], part[3],part[4],part[5], part[6],null));
+	               // System.out.println(part[0]+"  "+part[1]+",     "+part[2]+",    "+part[3]+",    "+part[4]+",    "+part[5]+",    "+part[6]+",");
+	            	//System.out.format("%1s %13s %20s %15s %20s %10s\n", part[0],part[1]+",",part[2]+part[3]+",",part[4]+",",part[5]+",",part[6]);
+                }
+	            reader.close();
+	        
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         } finally {
+	            try {
+	                reader.close();
+	               
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+        	
+  	
+        	
+		}
+        
+        
+		public static void replace(String student_Id,String old_Course,String new_Course) throws FileNotFoundException {
+			String resourceName = ".\\Data\\Student course details.json";
+		    InputStream inputStream = new FileInputStream(resourceName);
+
+		    JSONTokener jsonTokener = new JSONTokener(inputStream);
+		    JSONObject jsonObject = new JSONObject(jsonTokener);
+	try {
+		    org.json.JSONArray jsonArray = jsonObject.getJSONArray(student_Id);
+		  
+		   // List course = new ArrayList<>();
+		    if (jsonArray.length()==0) {
+				System.out.println("Faild to replace as the student hasn't enrolled in any course yet");
+			}else {
+		    for (int i = 0; i < jsonArray.length(); i++) {
+		     
+		    //	course.add(jsonArray.getInt(i));
+		        if (jsonArray.getInt(i)==Integer.parseInt(old_Course)) {
+					
+		        	jsonArray.put(i, Integer.parseInt(new_Course));
+		        	System.out.println("Courses replaced successfully from the Algorithms course to Number Theory course");
+				}
+		       
+		    }		
+		    FileWriter writer = new FileWriter(".\\Data\\Student course details.json", false); //overwrites the content of file
+			writer.write(jsonObject.toString());
+			writer.close();
+		  
+	        }
+	}
+	        catch (Exception e) {
+	       
+	        	System.out.println(e);
+			
+	         } finally {
+	        }	
+			
+		}
+		
+		
 		
 }
