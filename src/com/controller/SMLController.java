@@ -126,20 +126,6 @@ try {
 	        catch (Exception e) {
 	       
             	System.out.println("Student has not enrolled in any course yet.");
-            	System.out.println("------------------------------------------------------------------------------------\r\n"
-            			+ "Please choose from the following:\r\n"
-            			+ "a - Enroll in a course\r\n"
-            			+ "d - Unenrollfrom an existing course\r\n"
-            			+ "r - Replacing an existing course\r\n"
-            			+ "b - Back to the main page\r\n"
-            			+ "Please select the required action: r\r\n"
-            			+ "Faild to replace as the student hasn't enrolled in any course yet\r\n"
-            			+ "Please choose from the following:\r\n"
-            			+ "a - Enroll in a course\r\n"
-            			+ "d - Unenrollfrom an existing course\r\n"
-            			+ "r - Replacing an existing course\r\n"
-            			+ "b - Back to the main page\r\n"
-            			+ "Please select the required action:");
 			
 	         } finally {
 	        }	
@@ -225,39 +211,6 @@ try {
 			
 	}
 	
-	//search in json file 
-	/*public static boolean search(String pathFile ,String id) throws IOException, ParseException {
-		JSONParser p=new JSONParser();
-		FileReader reader = new FileReader(pathFile);
-		JSONArray courses=(JSONArray) p.parse(reader);
-		for (int i = 0; i < courses.size(); i++)
-		    if (courses.contains(i)) {
-		       
-		return true; 
-		    }
-		return false;
-	}
-	/*
-	public static void printAll() {
-		  String[] student;                                // created an array of type String
-          while ((student = studentData.readNext()) != null)   //read data line by line
-          {
-              for (int i = 0; i < studentDetails.length; i++) {
-                  Student sDetail = new Student(student[0],student[1],);
-                  sDetail.setId(studentDetails[0]);
-                  sDetail.setName(studentDetails[1]);
-                  sDetail.setGrade(studentDetails[2]);
-                  sDetail.setEmail(studentDetails[3]);
-                  sDetail.setAddress(studentDetails[4]);
-                  sDetail.setRegion(studentDetails[5]);
-                  sDetail.setCountry(studentDetails[6]);
-                  students.add(sDetail);
-              }
-          }
-		
-		
-	}
-	*/
 	//Function to print list of courses
 		public static void print_All_Courses() {
 			System.out.println("Enrollment page\r\n"
